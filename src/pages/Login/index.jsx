@@ -23,7 +23,7 @@ const Login = () => {
   useTitle('Iniciar sesión | SENARAMA');
   return (
     <>
-      <Header home={false} title="Iniciar sesión" login={true} />
+      <Header home={false} title="Iniciar sesión" loginBtn={false} />
       <div className={style.container}>
         <div className={style.login_image}>
           <img

@@ -1,141 +1,148 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import Navbar from 'react-bootstrap/Navbar';
-import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import Contact from '../Contact';
-import style from './style.module.scss';
+import { Link } from 'react-router-dom';
+import Container from 'react-bootstrap/Container';
+import useScroll from '../../hooks/useScroll';
 import senaLogo from '../../assets/icons/sena.png';
 import senaramaLogo from '../../assets/icons/senarama.png';
 import facebookLogo from '../../assets/icons/facebook.png';
 import instagramLogo from '../../assets/icons/instagram.png';
 import twitterLogo from '../../assets/icons/twitter.png';
 import youtubeLogo from '../../assets/icons/youtube.png';
-import useScroll from '../../hooks/useScroll';
+import Contact from '../Contact';
+import style from './style.module.scss';
+import './default.scss';
 
 const Header = ({
-  isAuthenticated,
   home,
   title,
-  login,
+  isAuthenticated,
+  loginBtn,
 }) => {
-  const [showContact, setShowContact] = useState(false);
-  const showContactModal = () => setShowContact(true);
   const scroll = useScroll();
+  const [showContact, setShowContact] = useState(false);
+
+  const Title = (
+    <div className={style.title}>
+      <h1>{title}</h1>
+    </div>
+  );
+
+  const AuthAction = (
+    <Link
+      className={`${style.auth_btn} ${style.auth_action}`}
+      to={loginBtn ? '/login' : '/signup'}
+    >
+      {loginBtn ? 'Iniciar sesión' : 'Registrarse'}
+    </Link>
+  );
+
+  const ExtraMenu = (
+    <>
+      <Link
+        className={style.item_link}
+        to="/projects"
+      >
+        Proyectos
+      </Link>
+      <Link
+        className={style.item_link}
+        to="/senarautas"
+      >
+        Senarautas
+      </Link>
+      <Link
+        className={style.item_link}
+        to="/billboard"
+      >
+        Cartelera
+      </Link>
+    </>
+  );
+  const Logout = (
+    <button
+      className={`${style.auth_btn} ${style.logout}`}
+      type="button"
+      onClick={() => {}}
+    >
+      Cerrar sesión
+    </button>
+  );
+
   return (
-    <header className={style.header}>
+    <header>
       <Navbar
-        className={`${style.navbar} ${scroll || !home ? style.nav_active : ''}`}
-        sticky
+        className={`${style.navbar} ${scroll || !home ? style.active : ''}`}
         expand="lg"
+        fixed="top"
         variant="dark"
       >
-        <Container
-          fluid="lg"
-          className={style.nav_container}
-        >
-          <Navbar.Brand
-            href="https://www.sena.edu.co/es-co/Paginas/default.aspx"
-          >
-            <img
-              className={style.logo_link}
-              src={senaLogo}
-              alt="SENA Logo"
-            />
-          </Navbar.Brand>
-          <Link to="/">
-            <img
-              className={style.logo_link}
-              src={senaramaLogo}
-              alt="SENARAMA Logo"
-            />
-          </Link>
-          {
-            !home
-              ? (
-                <div className={style.nav_title}>
-                  <h1>{title}</h1>
-                </div>
-              )
-              : ''
-          }
-          <Navbar.Toggle aria-controls="navbarScroll" />
-          <Navbar.Collapse>
-            <Nav className={style.nav_menu} navbarScroll>
-              <Link className={style.nav_link} to="/home">Inicio</Link>
-              {
-                home
-                  ? (
-                    <div>
-                      <Link className={style.nav_link} to="/projects">Proyectos</Link>
-                      <Link className={style.nav_link} to="/senarautas">Senarautas</Link>
-                      <Link className={style.nav_link} to="/billboard">Cartelera</Link>
-                    </div>
-                  )
-                  : ''
-              }
+        <Container fluid="lg" className={style.container}>
+          <div className={style.logos}>
+            <Navbar.Brand
+              href="https://www.sena.edu.co/es-co/Paginas/default.aspx"
+            >
+              <img src={senaLogo} alt="SENA" />
+            </Navbar.Brand>
+            <Link to="/">
+              <img src={senaramaLogo} alt="SENARAMA" />
+            </Link>
+          </div>
+          { !home && Title }
+          <Navbar.Toggle aria-controls="collapse-navbar" />
+          <Navbar.Collapse id="collapse-navbar">
+            <Nav className={style.menu} navbarScroll>
+              <Link
+                className={style.item_link}
+                to="/"
+              >
+                Inicio
+              </Link>
+              { home && ExtraMenu }
               <button
-                className={style.nav_link}
+                className={style.item_btn}
                 type="button"
-                onClick={showContactModal}
+                onClick={() => { setShowContact(true); }}
               >
                 Contacto
               </button>
-              <div className={style.social_networks}>
-                <NavDropdown title="REDES">
-                  <NavDropdown.Item
-                    href="https://facebook.com"
-                  >
-                    <img src={facebookLogo} alt="Facebook" />
-                    Facebook
-                  </NavDropdown.Item>
-                  <NavDropdown.Item
-                    href="https://facebook.com"
-                  >
-                    <img src={twitterLogo} alt="Twitter" />
-                    Twitter
-                  </NavDropdown.Item>
-                  <NavDropdown.Item
-                    href="https://facebook.com"
-                  >
-                    <img src={instagramLogo} alt="Instagram" />
-                    Instagram
-                  </NavDropdown.Item>
-                  <NavDropdown.Item
-                    href="https://facebook.com"
-                  >
-                    <img src={youtubeLogo} alt="YouTube" />
-                    YouTube
-                  </NavDropdown.Item>
-                </NavDropdown>
-              </div>
+              <NavDropdown className={style.social_networks} title="REDES">
+                <NavDropdown.Item
+                  href="https://facebook.com"
+                >
+                  <img src={facebookLogo} alt="Facebook" />
+                  Facebook
+                </NavDropdown.Item>
+                <NavDropdown.Item
+                  href="https://twitter.com"
+                >
+                  <img src={twitterLogo} alt="Twitter" />
+                  Twitter
+                </NavDropdown.Item>
+                <NavDropdown.Item
+                  href="https://instagram.com"
+                >
+                  <img src={instagramLogo} alt="Instagram" />
+                  Instagram
+                </NavDropdown.Item>
+                <NavDropdown.Item
+                  href="https://youtube.com"
+                >
+                  <img src={youtubeLogo} alt="YouTube" />
+                  YouTube
+                </NavDropdown.Item>
+              </NavDropdown>
             </Nav>
-            <Nav className={style.nav_social} navbarScroll>
-              <div className={style.auth_opts}>
-                {
-                  isAuthenticated
-                    ? (
-                      <div>
-                        <button className={style.logout} type="button">
-                          Cerrar sesión
-                        </button>
-                      </div>
-                    )
-                    : (
-                      <div>
-                        <Link
-                          className={style.login}
-                          to={`${login ? '/signup' : '/login'}`}
-                        >
-                          {!login ? 'Iniciar sesión' : 'Registrase'}
-                        </Link>
-                      </div>
-                    )
-                }
-              </div>
-            </Nav>
+            <div className={style.auth}>
+              {
+                isAuthenticated
+                  ? Logout
+                  : AuthAction
+              }
+            </div>
           </Navbar.Collapse>
         </Container>
       </Navbar>
@@ -145,17 +152,17 @@ const Header = ({
 };
 
 Header.propTypes = {
-  isAuthenticated: PropTypes.bool,
   home: PropTypes.bool,
   title: PropTypes.string,
-  login: PropTypes.bool,
+  isAuthenticated: PropTypes.bool,
+  loginBtn: PropTypes.bool,
 };
 
 Header.defaultProps = {
-  isAuthenticated: false,
   home: true,
   title: 'SENARAMA',
-  login: false,
+  isAuthenticated: false,
+  loginBtn: true,
 };
 
 export default Header;

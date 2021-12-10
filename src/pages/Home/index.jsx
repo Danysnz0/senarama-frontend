@@ -13,7 +13,7 @@ import Header from '../../components/Header';
 const Home = () => {
   const SlidesShow = React.lazy(() => import('../../components/SlidesShow'));
   return (
-    <main>
+    <main className={style.container}>
       <Header />
       <Suspense
         fallback={(

@@ -1,147 +1,97 @@
-$fg-white: rgb(231, 231, 231);
+$primary-color: rgb(7, 119, 98);
+$text-color: rgb(220, 220, 220);
 
-.logo_link {
-  width: 50px;
-  margin-right: 0.5rem;
+a.item_link, a.auth_btn, button, .title {
+  text-transform: uppercase;
 }
 
-header {
-  margin: 0;
+.navbar {
+  width: 100vw;
+  color: $text-color;
+  background-color: $primary-color;
   padding: 0;
-  overflow-wrap: normal;
+  margin: 0;
 
-  .navbar {
-    color: $fg-white;
-    padding: 0.3rem 0;
-    position: fixed;
+  .container {
+    max-width: 99vw;
+    padding: .6rem;
     margin: 0;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    z-index: 3;
-
-    .nav_title {
-      padding-right: 1.5rem;
-      h1 {
-        font-size: 1.2rem;
-        text-transform: uppercase;
-        color: $fg-white;
-      }
+  }
+  .logos {
+    img {
+      height: 2.8rem;
     }
-    .nav_container:first-child {
-      margin-left: 1.5rem;
-    }
+  }
 
-    .nav_container {
+  .title {
+    padding: 0 1rem;
+    h1 {
+      font-size: 1.2rem;
+      color: $text-color;
+    }
+  }
+  .menu {
+    .item_link {
+      padding: .5rem;
+      color: inherit;
       margin: 0;
-      max-width: 100vw;
-
-      .nav_menu {
-        color: inherit;
-        margin: 0.3rem 0;
-        .nav_link {
-          color: inherit;
-          padding: 0 0.5rem;
-          text-decoration: none;
-          text-transform: uppercase;
-        }
-        
-        a {
-          padding: 0;
-        }
-
-        button {
-          display: inline;
-          background-color: transparent;
-          text-align: left;
-          border: none;
-        }
-      }
-
-      .social_networks {
-        text-align: left;
-        padding: 0 0.5rem;
-        color: white !important;
-        img {
-          width: 2rem;
-          margin: 0 0.3rem;
-        }
-      }
-      .nav_social {
-        width: 100%;
-
-        .auth_opts {
-          padding: 0.5rem;
-          width: 100%;
-          div {
-            text-align: center;
-          }
-          a {
-            color: inherit;
-            text-decoration: none;
-            padding: 0.5rem;
-            text-transform: uppercase;
-          }
-
-          .login {
-            color: white;
-            border-radius: 8px;
-          }
-
-          .logout {
-            color: white;
-            background-color: rgb(7, 119, 98);
-            border-radius: 8px;
-            padding: 0.3rem 0.8rem;
-            outline: none;
-            text-transform: uppercase;
-            border: none;
-          }
-        }
-      }
     }
-  }
-
-  .nav_active {
-    background-color: rgb(7, 119, 98);
-    box-shadow: rgba(46, 46, 46, 0.774);
-
-    .login {
-      background-color: transparent !important;
+    .item_btn {
+      width: fit-content;
+      padding: .5rem;
+      background-color: transparent;
+      color: inherit;
     }
-  }
-}
 
-@media only screen and (min-width: 320px) and (max-width: 1024px) {
-  .navbar {
-    background-color: rgb(7, 119, 98);
-  }
-}
-
-@media only screen and (min-width: 1025px) {
-  .navbar {
     .social_networks {
-      margin-right: 4% !important;
+      padding-left: 0.5rem;
+
+      img {
+        width: 2.5rem;
+        padding-right: .5rem;
+      }
     }
+  }
+}
 
-    .nav_social {
-      align-items: flex-end !important;
-      padding-right: 2rem !important;
+.active {
+  background-color: $primary-color !important;
+  box-shadow: 1px 1px 4px rgb(60, 60, 60);
 
-      .auth_opts {
-        div {
-          text-align: right !important;
-        }
-      }
+  .auth_btn {
+    background-color: transparent !important;
+  }
+}
 
-      .social_link {
-        margin: 0 0.1rem !important;
-      }
 
-      .login {
-        background-color: rgb(20, 180, 54);
-      }
+.auth {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  .auth_btn {
+    padding: 0.5rem 1rem;
+    outline: none;
+    border: none;
+    border-radius: 6px;
+    background-color: transparent;
+    color: inherit;
+  }
 
+  .auth_action {
+    padding: .5rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .navbar {
+    background-color: transparent;
+  }
+
+  .auth {
+    justify-content: right;
+    padding-right: 2rem;
+    .auth_btn {
+      background-color: rgb(226, 87, 0);
     }
   }
 }
