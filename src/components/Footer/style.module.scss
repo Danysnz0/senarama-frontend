@@ -1,0 +1,26 @@
+@import '../../sass/colors';
+
+.footer {
+  align-items: center;
+  background-color: $bg-footer;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+}
+
+.content {
+  color: $fg-white;
+  font-size: 0.75em;
+  padding: 1rem;
+  text-align: left;
+
+  p {
+    padding: 0.25em;
+  }
+
+  p:last-child {
+    padding-top: 1rem;
+    font-size: 1.5em;
+  }
+}

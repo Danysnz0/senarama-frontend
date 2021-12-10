@@ -1,0 +1,18 @@
+{
+    "cSpell.words": [
+        "browserslist",
+        "Conocenos",
+        "SENARAMA",
+        "Senarauta",
+        "senarautas",
+        "signup",
+        "tiktok",
+        "toastify",
+        "transmedia"
+    ],
+    "editor.tabSize": 2,
+    "material-icon-theme.activeIconPack": "react_redux",
+    "css.lint.unknownAtRules": "ignore",
+    "scss.lint.unknownAtRules": "ignore",
+    "cSpell.language": "en,es-ES"
+}
